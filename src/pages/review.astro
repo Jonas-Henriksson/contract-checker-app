@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContractReviewer from '../components/ContractReviewer';
+---
+
+<Layout title="Review Your Contract | ContractChecker AI">
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <ContractReviewer client:load />
+  </div>
+</Layout>

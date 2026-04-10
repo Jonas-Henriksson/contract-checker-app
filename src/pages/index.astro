@@ -1,0 +1,261 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="ContractChecker AI - AI Contract Review in 60 Seconds">
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-950 to-navy-950"></div>
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-gold-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-6xl mx-auto px-4 py-24 md:py-32">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-1.5 mb-6">
+          <div class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></div>
+          <span class="text-sm text-gold-400 font-medium">Powered by AI</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+          AI Contract Review
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600"> in 60 Seconds</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+          Identify hidden risks, missing clauses, and unfair terms before you sign. Get a clause-by-clause risk breakdown with plain-English explanations and negotiation tips.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/review" class="btn-primary text-lg !py-4 !px-8 inline-flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            Review My Contract — Free
+          </a>
+          <a href="#how-it-works" class="btn-secondary text-lg !py-4 !px-8 inline-flex items-center justify-center">
+            See How It Works
+          </a>
+        </div>
+        <p class="text-sm text-gray-500 mt-4">First review free. No sign-up required. Your contract text is never stored.</p>
+      </div>
+
+      <!-- Risk preview mockup -->
+      <div class="mt-16 max-w-2xl mx-auto">
+        <div class="card !p-8 border-gold-500/20">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <p class="text-sm text-gray-500 mb-1">Contract Risk Score</p>
+              <p class="text-4xl font-bold text-amber-400">62<span class="text-lg text-gray-500">/100</span></p>
+              <p class="text-sm text-amber-400 font-medium mt-1">Medium Risk</p>
+            </div>
+            <div class="w-24 h-24 rounded-full border-4 border-amber-500/30 flex items-center justify-center" style="background: conic-gradient(#f59e0b 62%, rgba(30,39,73,0.6) 0);">
+              <div class="w-[4.5rem] h-[4.5rem] rounded-full bg-navy-900 flex items-center justify-center">
+                <span class="text-xl font-bold text-amber-400">62</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            {[
+              { label: 'High Risk', count: '2 clauses', color: 'text-red-400' },
+              { label: 'Medium Risk', count: '3 clauses', color: 'text-amber-400' },
+              { label: 'Missing', count: '2 critical', color: 'text-orange-400' },
+            ].map(item => (
+              <div class="bg-navy-800/50 rounded-lg p-3 text-center">
+                <p class="text-xs text-gray-500 mb-1">{item.label}</p>
+                <p class={`text-lg font-bold ${item.color}`}>{item.count}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof -->
+  <section class="border-y border-navy-800/50 bg-navy-900/30">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {[
+          { value: '5,000+', label: 'Contracts Reviewed' },
+          { value: '60s', label: 'Average Review Time' },
+          { value: '97%', label: 'Risk Detection Rate' },
+          { value: '$2.4M', label: 'Liability Flagged' },
+        ].map(stat => (
+          <div>
+            <p class="text-2xl md:text-3xl font-bold text-gold-400">{stat.value}</p>
+            <p class="text-sm text-gray-500">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">How It Works</h2>
+        <p class="text-gray-400 max-w-xl mx-auto">Three steps to understand what you are actually signing</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {[
+          {
+            step: '01',
+            title: 'Paste or Upload',
+            desc: 'Paste your contract text or upload a .txt file. Your data is processed locally and never stored on our servers.',
+            icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" /></svg>`,
+          },
+          {
+            step: '02',
+            title: 'AI Analysis',
+            desc: 'Our AI engine scans every clause for risks, checks for missing protections, and identifies unfair terms in seconds.',
+            icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" /></svg>`,
+          },
+          {
+            step: '03',
+            title: 'Get Your Report',
+            desc: 'Receive a detailed risk report with clause-by-clause breakdown, missing clauses, and specific negotiation suggestions.',
+            icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>`,
+          },
+        ].map(item => (
+          <div class="card group hover:border-gold-500/30 transition-all duration-300">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-4xl font-extrabold text-navy-700 group-hover:text-gold-500/20 transition-colors">{item.step}</span>
+              <div class="text-gold-500" set:html={item.icon} />
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">{item.title}</h3>
+            <p class="text-gray-400 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-20 bg-navy-900/30 border-y border-navy-800/50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What You Get</h2>
+        <p class="text-gray-400 max-w-xl mx-auto">Comprehensive contract intelligence in plain English</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { title: 'Risk Score (0-100)', desc: 'An overall risk rating showing how risky the contract is, from safe (green) to dangerous (red).', color: 'text-gold-400' },
+          { title: 'Clause-by-Clause Breakdown', desc: 'Every risky clause identified and color-coded: green (safe), yellow (caution), red (danger).', color: 'text-red-400' },
+          { title: '5 Key Concerns', desc: 'The most important issues flagged with plain-English explanations of why they matter.', color: 'text-amber-400' },
+          { title: 'Missing Clause Detection', desc: 'Identifies standard protections missing from your contract: liability caps, termination rights, IP ownership, and more.', color: 'text-blue-400' },
+          { title: 'Plain-English Summary', desc: 'Understand what the contract actually says without deciphering legal jargon.', color: 'text-green-400' },
+          { title: 'Negotiation Suggestions', desc: 'Specific, actionable tips for how to negotiate each risky clause in your favor.', color: 'text-purple-400' },
+        ].map(feature => (
+          <div class="card hover:border-gold-500/20 transition-all">
+            <p class={`text-sm font-semibold mb-2 ${feature.color}`}>{feature.title}</p>
+            <p class="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Who Is This For?</h2>
+        <p class="text-gray-400 max-w-xl mx-auto">Anyone signing a contract should know what they are agreeing to</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { title: 'Freelancers', desc: 'Review client contracts before starting work. Catch unfair IP clauses and payment traps.', emoji: '' },
+          { title: 'Small Business', desc: 'Understand vendor agreements, leases, and service contracts without expensive legal fees.', emoji: '' },
+          { title: 'Employees', desc: 'Review employment agreements, non-competes, and stock option grants before signing.', emoji: '' },
+          { title: 'Startups', desc: 'Screen investor term sheets, partnership agreements, and SaaS contracts quickly.', emoji: '' },
+        ].map(uc => (
+          <div class="card hover:border-gold-500/20 transition-all text-center">
+            <h3 class="text-lg font-bold text-white mb-2">{uc.title}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">{uc.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-20 md:py-28 bg-navy-900/30 border-y border-navy-800/50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Simple Pricing</h2>
+        <p class="text-gray-400 max-w-xl mx-auto">Cheaper than one hour of legal fees. Start free.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <!-- Free tier -->
+        <div class="card !p-8 flex flex-col">
+          <div class="mb-6">
+            <p class="text-sm font-medium text-gray-400 mb-1">Starter</p>
+            <p class="text-4xl font-bold text-white">Free</p>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            {['1 contract review', 'Full AI risk analysis', 'Clause-by-clause breakdown', 'Missing clause detection', '5 key concerns flagged'].map(item => (
+              <li class="flex items-center gap-2 text-sm text-gray-300">
+                <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="/review" class="btn-secondary text-center">Try Free Review</a>
+        </div>
+        <!-- Pro tier -->
+        <div class="card !p-8 border-gold-500/30 bg-gradient-to-b from-gold-500/5 to-transparent flex flex-col relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span class="bg-gold-500 text-navy-950 text-xs font-bold px-3 py-1 rounded-full">BEST VALUE</span>
+          </div>
+          <div class="mb-6">
+            <p class="text-sm font-medium text-gold-400 mb-1">Pro Pack</p>
+            <p class="text-4xl font-bold text-white">$19<span class="text-lg text-gray-500">/one-time</span></p>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            {['5 contract reviews', 'Full AI risk analysis', 'Clause-by-clause breakdown', 'Missing clause detection', '5 key concerns per review', 'Negotiation suggestions', 'Downloadable report', 'Priority processing'].map(item => (
+              <li class="flex items-center gap-2 text-sm text-gray-300">
+                <svg class="w-4 h-4 text-gold-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="https://gumroad.com" target="_blank" rel="noopener" class="btn-primary text-center">Get 5 Reviews — $19</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="card !p-8 border-gold-500/10">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0 mt-1">
+            <svg class="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-2">Your Privacy Is Protected</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Your contract text is processed entirely in-browser and never stored on our servers. We do not save, log, or share any contract content.
+              The analysis runs locally in your browser session and is discarded when you close the page. We take document confidentiality seriously
+              because we know you are trusting us with sensitive information.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-b from-navy-900/50 to-navy-950">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Know What You Are Signing</h2>
+      <p class="text-gray-400 mb-8 text-lg">Do not sign a contract you do not fully understand. Get AI-powered risk analysis in 60 seconds.</p>
+      <a href="/review" class="btn-primary text-lg !py-4 !px-8 inline-flex items-center gap-2">
+        Review My Contract Now
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+      </a>
+    </div>
+  </section>
+</Layout>
