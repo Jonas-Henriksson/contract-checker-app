@@ -343,7 +343,7 @@ export default function ContractResults({ result, onReset, contractText }: Props
         <h3 className="text-xl font-bold text-white mb-2">Need More Reviews?</h3>
         <p className="text-gray-400 text-sm mb-4">Get 5 contract reviews for $19. Cheaper than a single hour of legal fees.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href="https://gumroad.com" target="_blank" rel="noopener" className="btn-primary !py-2.5 !px-6 text-sm">
+          <a href="https://jonashenriksson.gumroad.com/l/contract-checker" target="_blank" rel="noopener" className="btn-primary !py-2.5 !px-6 text-sm">
             Get 5 Reviews — $19
           </a>
           <button onClick={onReset} className="btn-secondary !py-2.5 !px-6 text-sm">

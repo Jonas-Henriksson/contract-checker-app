@@ -89,7 +89,7 @@ export default function ContractReviewer() {
         ) : (
           <p className="text-sm text-red-400 mt-2">
             No reviews remaining.{' '}
-            <a href="https://gumroad.com" target="_blank" rel="noopener" className="underline hover:text-red-300">
+            <a href="https://jonashenriksson.gumroad.com/l/contract-checker" target="_blank" rel="noopener" className="underline hover:text-red-300">
               Get 5 more for $19
             </a>
           </p>
