@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
-import { analyzeContractText, type ContractResult } from '../lib/mock-analyzer';
+import { analyzeContractText } from '../lib/api-analyzer';
+import type { ContractResult } from '../lib/mock-analyzer';
 import { canReview, incrementReviews, getReviewsRemaining, hasFreeReview } from '../lib/storage';
+import { parseFile, isSupportedFile, getSupportedExtensionsString, ACCEPT_STRING } from '../lib/file-parser';
 import ContractResults from './ContractResults';
 
 export default function ContractReviewer() {
@@ -10,26 +12,29 @@ export default function ContractReviewer() {
   const [error, setError] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [fileLoading, setFileLoading] = useState(false);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (!file.name.endsWith('.txt')) {
-      setError('Please upload a .txt file.');
+    if (!isSupportedFile(file.name)) {
+      setError(`Unsupported file type. Supported: ${getSupportedExtensionsString()}`);
       return;
     }
-    if (file.size > 500_000) {
-      setError('File too large. Maximum 500KB.');
+    if (file.size > 5_000_000) {
+      setError('File too large. Maximum 5MB.');
       return;
     }
     setError('');
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const content = ev.target?.result;
-      if (typeof content === 'string') {
-        setText(content);
-      }
-    };
-    reader.readAsText(file);
+    setFileLoading(true);
+    try {
+      const content = await parseFile(file);
+      setText(content);
+    } catch (err) {
+      setError(`Failed to read file: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    } finally {
+      setFileLoading(false);
+    }
   };
 
   const handleAnalyze = async () => {
@@ -76,7 +81,7 @@ export default function ContractReviewer() {
     <div>
       <div className="text-center mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Review Your Contract</h1>
-        <p className="text-gray-400">Paste your contract text below or upload a .txt file</p>
+        <p className="text-gray-400">Paste your contract text below or upload a document (PDF, DOCX, DOC, RTF, TXT)</p>
         {isFree ? (
           <p className="text-sm text-green-400 mt-2">Your first review is free</p>
         ) : remaining > 0 ? (
@@ -102,12 +107,12 @@ export default function ContractReviewer() {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
               </svg>
-              Upload .txt
+              {fileLoading ? 'Reading file...' : 'Upload Document'}
             </button>
             <input
               ref={fileInputRef}
               type="file"
-              accept=".txt"
+              accept={ACCEPT_STRING}
               onChange={handleFileUpload}
               className="hidden"
             />
@@ -175,7 +180,7 @@ export default function ContractReviewer() {
           <div>
             <p className="text-sm font-medium text-white mb-1">Privacy First</p>
             <p className="text-xs text-gray-400">
-              Your contract text is analyzed entirely in your browser. We do not store, log, or transmit your document.
+              Your contract text is sent securely to our AI analysis service for review. We do not store or log your document.
               Analysis results are discarded when you close the page.
             </p>
           </div>
